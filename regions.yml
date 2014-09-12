@@ -1,0 +1,229 @@
+# commonly used bits
+kin_crz: &KINCRZ
+  leading_jet_gev: 50
+  first_lepton_pt_gev: 70
+  met_gev: 100
+
+kin_crw: &KINCRW
+  leading_jet_gev: 130
+  first_lepton_pt_gev: 50
+  met_gev: 100
+  mct_gev: 150
+
+kin_crt: &KINCRT
+  leading_jet_gev: 50
+  met_gev: 50
+
+kin_sig: &KINSIGBASE
+  leading_jet_gev: 130
+  second_jet_gev: 100
+  met_gev: 150
+
+regions:
+  # standard control regions
+  cr_z:
+    kinematics: *KINCRZ
+    replacement: leptmet
+    selection: CR_Z_1L
+    stream: lepton
+    type: control
+    tagger: JFC
+
+  cr_w_l1pt25:
+    kinematics:
+      leading_jet_gev: 130
+      first_lepton_pt_gev: 25
+      met_gev: 100
+      mct_gev: 150
+    replacement: normal
+    selection: CR_W
+    stream: lepton
+    type: control
+    tagger: JFC
+
+  cr_w:
+    kinematics: *KINCRW
+    replacement: normal
+    selection: CR_W
+    stream: lepton
+    type: control
+    tagger: JFC
+
+  cr_t:
+    kinematics: *KINCRT
+    replacement: normal
+    selection: CR_T
+    stream: lepton
+    type: control
+    tagger: JFC
+
+  # without tagging requirements, with leptmet
+  vr_z:
+    kinematics: *KINCRZ
+    replacement: leptmet
+    selection: CR_Z_1L
+    stream: lepton
+    type: validation
+    tagger: NONE
+  vr_1e_lm:
+    kinematics: *KINCRW
+    replacement: leptmet
+    selection: CR_1E
+    stream: electron
+    type: validation
+    tagger: NONE
+  vr_1m_lm:
+    kinematics: *KINCRW
+    replacement: leptmet
+    selection: CR_1M
+    stream: muon
+    type: validation
+    tagger: NONE
+
+  # 1 tag requirement
+  vr_z_1t:
+    kinematics: *KINCRZ
+    replacement: leptmet
+    selection: CR_Z_1L
+    stream: lepton
+    type: validation
+    tagger: JFC_LEADING_JET
+  vr_1e_1t:
+    kinematics: *KINCRW
+    replacement: normal
+    selection: CR_1E
+    stream: electron
+    type: validation
+    tagger: JFC_LEADING_JET
+  vr_1m_1t:
+    kinematics: *KINCRW
+    replacement: normal
+    selection: CR_1M
+    stream: muon
+    type: validation
+    tagger: JFC_LEADING_JET
+  vr_t_1t:
+    kinematics: *KINCRT
+    replacement: normal
+    selection: CR_T
+    stream: lepton
+    type: validation
+    tagger: JFC_LEADING_JET
+
+  # 2 tag requirement
+  vr_1e_2t:
+    kinematics: *KINCRW
+    replacement: normal
+    selection: CR_1E
+    stream: electron
+    type: validation
+    tagger: JFC
+  vr_1m_2t:
+    kinematics: *KINCRW
+    replacement: normal
+    selection: CR_1M
+    stream: muon
+    type: validation
+    tagger: JFC
+  vr_z_2t_2l:
+    kinematics: *KINCRZ
+    replacement: leptmet
+    selection: CR_Z_2L
+    stream: lepton
+    type: validation
+    tagger: JFC
+  vr_z_2t_al:
+    kinematics: *KINCRZ
+    replacement: leptmet
+    selection: CR_Z_AL
+    stream: lepton
+    type: control
+    tagger: JFC
+
+  # without tagging requirements, no leptmet
+  vr_1e:
+    kinematics: *KINCRW
+    replacement: normal
+    selection: CR_1E
+    stream: electron
+    type: validation
+    tagger: NONE
+  vr_1m:
+    kinematics: *KINCRW
+    replacement: normal
+    selection: CR_1M
+    stream: muon
+    type: validation
+    tagger: NONE
+  vr_t:
+    kinematics: *KINCRT
+    replacement: normal
+    selection: CR_T
+    stream: lepton
+    type: validation
+    tagger: NONE
+
+  # SR
+  signal_mct150:
+    kinematics:
+      << : *KINSIGBASE
+      mct_gev: 150
+    replacement: normal
+    selection: SIGNAL
+    stream: jet
+    type: signal
+    tagger: JFC
+  signal_mct200:
+    kinematics:
+      << : *KINSIGBASE
+      mct_gev: 200
+    replacement: normal
+    selection: SIGNAL
+    stream: jet
+    type: signal
+    tagger: JFC
+  signal_mct250:
+    kinematics:
+      << : *KINSIGBASE
+      mct_gev: 250
+    replacement: normal
+    selection: SIGNAL
+    stream: jet
+    type: signal
+    tagger: JFC
+
+  # jet stream validation regions
+  vr_mct:
+    kinematics: *KINSIGBASE
+    replacement: normal
+    selection: VR_MCT
+    stream: jet
+    type: validation
+    tagger: JFC
+
+  vr_mcc:
+    kinematics: *KINSIGBASE
+    replacement: normal
+    selection: VR_MCC
+    stream: jet
+    type: validation
+    tagger: JFC
+
+  preselection:
+    kinematics: {leading_jet_gev: 50, met_gev: 150}
+    replacement: normal
+    selection: VR_MET
+    stream: jet
+    type: validation
+    tagger: NONE
+
+  vr_signal_mct150:
+    kinematics:
+      << : *KINSIGBASE
+      mct_gev: 150
+    replacement: normal
+    selection: SIGNAL
+    stream: jet
+    type: signal
+    tagger: NONE
+
