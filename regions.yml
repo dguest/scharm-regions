@@ -227,3 +227,39 @@ regions:
     type: signal
     tagger: NONE
 
+  # Nicola's validation regions (raise second jet pt)
+  cr_z_nicola:
+    kinematics:
+      leading_jet_gev: 130
+      second_jet_gev: 100
+      first_lepton_pt_gev: 70
+      met_gev: 100
+    replacement: leptmet
+    selection: CR_Z_1L
+    stream: lepton
+    type: control
+    tagger: JFC
+
+  cr_w_nicola:
+    kinematics:
+      leading_jet_gev: 130
+      second_jet_gev: 100
+      first_lepton_pt_gev: 50
+      met_gev: 100
+      mct_gev: 150
+    replacement: normal
+    selection: CR_W
+    stream: lepton
+    type: control
+    tagger: JFC
+
+  cr_t_nicola:
+    kinematics:
+      leading_jet_gev: 130
+      second_jet_gev: 100
+      met_gev: 50
+    replacement: normal
+    selection: CR_T
+    stream: lepton
+    type: control
+    tagger: JFC
