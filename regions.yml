@@ -192,8 +192,8 @@ regions:
     type: signal
     tagger: JFC
 
-  # jet stream validation regions
-  vr_mct:
+  # jet stream validation regions (`fr_` are Fit validation Regions)
+  fr_mct:
     kinematics: *KINSIGBASE
     replacement: normal
     selection: VR_MCT
@@ -201,7 +201,7 @@ regions:
     type: validation
     tagger: JFC
 
-  vr_mcc:
+  fr_mcc:
     kinematics: *KINSIGBASE
     replacement: normal
     selection: VR_MCC
