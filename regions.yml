@@ -21,7 +21,7 @@ kin_sig: &KINSIGBASE
 
 regions:
   # standard control regions
-  cr_z:
+  cr_z: &CRZ
     kinematics: *KINCRZ
     replacement: leptmet
     selection: CR_Z_1L
@@ -41,7 +41,7 @@ regions:
     type: control
     tagger: JFC
 
-  cr_w:
+  cr_w: &CRW
     kinematics: *KINCRW
     replacement: normal
     selection: CR_W
@@ -49,7 +49,7 @@ regions:
     type: control
     tagger: JFC
 
-  cr_t:
+  cr_t: &CRT
     kinematics: *KINCRT
     replacement: normal
     selection: CR_T
@@ -229,37 +229,60 @@ regions:
 
   # Nicola's validation regions (raise second jet pt)
   cr_z_nicola:
+    <<: *CRZ
     kinematics:
+      <<: *KINCRZ
       leading_jet_gev: 130
       second_jet_gev: 100
-      first_lepton_pt_gev: 70
-      met_gev: 100
-    replacement: leptmet
-    selection: CR_Z_1L
-    stream: lepton
-    type: control
-    tagger: JFC
 
   cr_w_nicola:
+    <<: *CRW
     kinematics:
+      <<: *KINCRW
       leading_jet_gev: 130
       second_jet_gev: 100
-      first_lepton_pt_gev: 50
-      met_gev: 100
-      mct_gev: 150
-    replacement: normal
-    selection: CR_W
-    stream: lepton
-    type: control
-    tagger: JFC
 
   cr_t_nicola:
+    <<: *CRT
     kinematics:
+      <<: *KINCRT
       leading_jet_gev: 130
       second_jet_gev: 100
-      met_gev: 50
-    replacement: normal
-    selection: CR_T
-    stream: lepton
-    type: control
-    tagger: JFC
+
+  # Nicola's validation regions (raise met)
+  cr_z_metola:
+    <<: *CRZ
+    kinematics:
+      <<: *KINCRZ
+      met_gev: 150
+
+  cr_w_metola:
+    <<: *CRW
+    kinematics:
+      <<: *KINCRW
+      met_gev: 150
+
+  cr_t_metola:
+    <<: *CRT
+    kinematics:
+      <<: *KINCRT
+      met_gev: 150
+
+  # Nicola's validation regions (raise both)
+  cr_z_bothola:
+    <<: *CRZ
+    kinematics:
+      <<: *KINCRZ
+      <<: *KINSIGBASE
+
+  cr_w_bothola:
+    <<: *CRW
+    kinematics:
+      <<: *KINCRW
+      <<: *KINSIGBASE
+
+  cr_t_bothola:
+    <<: *CRT
+    kinematics:
+      <<: *KINCRT
+      <<: *KINSIGBASE
